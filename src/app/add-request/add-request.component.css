@@ -1,0 +1,413 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.forms-container{
+  width: 600px;
+  position: relative;
+  margin: auto;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  background-color:white;
+  padding: 10px;
+}
+
+.forms-container .formHeader {
+  border-bottom: 1px solid #5a5a5a;
+
+}
+
+.forms-container .formHeader .close:hover{
+  cursor: pointer;
+}
+
+.forms-container .formTitle{
+  display: inline-block;
+  font-family: Roboto;
+  font-size: 16px;
+  color: #5a5a5a;
+  padding: 6px 10px;
+}
+
+.card{
+  height: auto !important;
+  border:none;
+}
+
+/*----------------------*/
+.card-header{
+  border: none;
+}
+a:not([href]):not([tabindex]){
+  font-family: Roboto;
+  font-size: 14px;
+  color: #b9b9b9;
+
+}
+li.active[_ngcontent-c6]{
+  border-bottom: 1px solid #0096d6;
+}
+li.active[_ngcontent-c6] a{
+  color: #0096d6 !important;
+
+}
+
+.nav-justified .nav-item {
+  padding: 10px 0 !important;
+  border-bottom: 1px solid #f2f2f2 !important;
+}
+
+
+.urgent{
+  margin-top: 15px;
+  background-color: #bbedff;
+  padding: 9px 20px;
+  font-family: Roboto;
+  font-size: 14px;
+  color: #5a5a5a;
+  font-weight: bold
+}
+
+.urgent .urgent-text{
+  margin-right: 20px;
+}
+
+.radioContainer{
+  padding: 18px 10px;
+  display: flex;
+}
+
+.radioContainer .type{
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: bold;
+  color: #5a5a5a;
+  line-height: 1.2;
+  margin-right: 15px;
+}
+.radioContainer .TestRadioCont .TestRadio,.radioContainer .LabRadioCont .LabRadio{
+  display: inline-block;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #5a5a5a;
+  padding: 2px;
+}
+.radioContainer .TestRadioCont .TestRadio.checked,.radioContainer .LabRadioCont .LabRadio.checked {
+  border: 2px solid #0096d6;
+}
+.radioContainer .TestRadioCont:hover,.radioContainer .LabRadioCont:hover{
+  cursor: pointer;
+}
+.radioContainer .TestRadioCont .TestRadio .checkedTestRadio,.radioContainer .LabRadioCont .LabRadio .checkedLabRadio{
+  height: 100%;
+  width: 100%;
+  background-color:#0096d6;
+  border-radius:50% ;
+}
+.radioContainer .TestRadioCont .title,.radioContainer .LabRadioCont .title{
+  margin-right: 14px;
+  font-family: Roboto;
+  font-size: 12px;
+  display: inline-block;
+  color: #5a5a5a;
+  position: relative;
+  top: -5px;
+  margin-left: 4px;
+}
+
+.radioContainer input[type="checkbox"]{
+  position: absolute;
+  z-index: -1;
+}
+
+.inputsForm{
+  display: grid;
+  grid-template-columns:1fr 1fr ;
+  grid-template-rows: repeat(3,65px);
+
+}
+.inputsForm input,.inputsForm select{
+  border: none;
+  font-family: Roboto;
+  font-size: 14px;
+  color: #5a5a5a;
+  /*border-bottom: 1px solid #b9b9b9;*/
+
+}
+.inputsForm input::placeholder{
+  font-family: Roboto;
+  font-size: 14px;
+}
+.inputsForm .mat-form-field-appearance-legacy .mat-form-field-wrapper{
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+}
+
+.inputsForm .halfShiftText {
+  position: relative;
+  margin-right: 15px;
+  top: -1px;
+}
+.inputsForm .halfShift{
+
+  padding-top: 30px;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar{
+  background-color: rgba(0,150,214,.54);
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #0096d6;
+}
+.mat-slide-toggle.mat-checked .mat-ripple-element{
+  background-color: #0096d6;
+}
+
+
+.cancel{
+  position: absolute;
+  bottom: 16px;
+  left: -3px;
+  border: none;
+  background: rgba(0,0,0,0);
+  font-family: Roboto;
+  font-size: 12px;
+  color: #5a5a5a;
+}
+.btn-secondary{
+  width: 60px;
+  height: 26px;
+  background-color: #0096d6;
+  font-family: Roboto;
+  font-size: 12px;
+  padding: 0;
+  color: #ffffff;
+  border-radius: 0;
+}
+.btn-secondary:hover{
+  background-color: #0096d6;
+}
+.halfShift{
+  font-family: Roboto;
+  font-size: 14px;
+  color: #5a5a5a;
+  font-weight: bold;
+}
+
+.carouselItem{
+  height: 100%;
+  width: 50px;
+  background-color: red;
+}
+/*2*/
+.RequestDetails{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.RequestDetails input{
+  border: none;
+
+}
+.RequestDetails  .mat-form-field-appearance-legacy .mat-form-field-wrapper{
+  margin-top:15px;
+}
+.RequestDetails  .requestMedia {
+  margin-bottom: 25px;
+}
+
+.RequestDetails  .requestMedia span.title , .RequestDetails  .ReplaceComponent span.title {
+  font-family: Roboto;
+  font-size: 12px;
+  color: #b9b9b9;
+  margin-bottom: 11px;
+  display: block;
+}
+.RequestDetails  .requestMedia .add , .RequestDetails  .ReplaceComponent .add{
+  display: grid;
+  grid-template-columns: 75px auto;
+  border-bottom:1px solid #b9b9b9;
+  position: relative;
+}
+.RequestDetails  .requestMedia .add .addedContent,
+.RequestDetails  .ReplaceComponent .add .addedContent{
+  border-left: 1px solid #0096d6;
+  margin-bottom: 3px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.RequestDetails  .requestMedia .add .addedContent .addedMedia,
+.RequestDetails  .ReplaceComponent .add .addedContent .addedComp{
+  font-family: Roboto;
+  font-size: 12px;
+  color: #5a5a5a;
+  background-color: #e0e1e4;
+  margin: 2px 2px;
+  padding: 2px 6px;
+  display: flex;
+  position: relative;
+}
+.RequestDetails  .requestMedia .add .addedContent .addedMedia .sittings,
+.RequestDetails  .ReplaceComponent .add .addedContent .addedComp .sittings{
+  color: #5a5a5a;
+  font-size: 14px;
+  margin-left: 12px;
+}
+
+.RequestDetails  .requestMedia .add .addedContent .addedMedia .sittings i ,
+.RequestDetails  .ReplaceComponent .add .addedContent .addedComp .sittings i{
+  margin: 2px 3px;
+}
+.RequestDetails  .requestMedia .add .addedContent .addedMedia .sittings:hover ,
+.RequestDetails  .ReplaceComponent .add .addedContent .addedComp .sittings:hover{
+  cursor: pointer;
+}
+.RequestDetails  .requestMedia .add span ,
+.RequestDetails  .ReplaceComponent .add span{
+  cursor: pointer;
+  color: #0096d6;
+  font-size: 18px;
+  margin-bottom: 3px;
+  font-family: Roboto;
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+
+
+.RequestDetails  .requestMedia .add .popup .mat-form-field-infix,
+.RequestDetails  .ReplaceComponent .add .popup .mat-form-field-infix{
+  width: auto;
+}
+.RequestDetails  .requestMedia .add .popup .mat-form-field-appearance-legacy .mat-form-field-wrapper,
+.RequestDetails  .ReplaceComponent .add .popup .mat-form-field-appearance-legacy .mat-form-field-wrapper{
+  margin-right:15px;
+}
+
+.RequestDetails  .requestMedia .add .popup ,
+.RequestDetails  .ReplaceComponent .add .popup{
+  display: none;
+  flex-direction: column;
+  padding: 0px 15px;
+  position: absolute;
+  width: 317px;
+  height: 214px;
+  background-color: #ffffff;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  left: 90px;
+  top: -83px;
+}
+
+.RequestDetails  .requestMedia .add .popup mat-form-field,
+.RequestDetails  .ReplaceComponent .add .popup mat-form-field{
+  display: block;
+}
+
+
+.RequestDetails  .requestMedia .add .editPopup ,
+.RequestDetails  .ReplaceComponent .add .editPopup {
+  display: block;
+  left: 180px;
+  top: -91px;
+}
+.RequestDetails  .requestMedia .add .popup .media_info, .RequestDetails  .ReplaceComponent .add .popup .media_info{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.RequestDetails  .requestMedia .add .popup .buttons ,
+.RequestDetails  .ReplaceComponent .add .popup .buttons {
+  border-top: 1px solid #e0e1e4;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  padding: 12px 0;
+
+}
+.RequestDetails  .requestMedia .add .popup .buttons button,
+.RequestDetails  .ReplaceComponent .add .popup .buttons button{
+  border: none;
+  padding: 5px 15px;
+}
+.RequestDetails  .requestMedia .add .popup .buttons .cancelBtn,
+.RequestDetails  .ReplaceComponent .add .popup .buttons .cancelBtn{
+
+  background-color: white;
+  color: #5a5a5a;
+  margin-left: auto;
+
+}
+.RequestDetails  .requestMedia .add .popup .buttons .done,
+.RequestDetails  .ReplaceComponent .add .popup .buttons .done{
+  background-color: #0096d6;
+  color: white;
+
+}
+
+/*3*/
+.optionalText{
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: bold;
+  color: #5a5a5a;
+  margin: 20px 0;
+}
+
+.addFile{
+  margin: 10px 0;
+}
+
+.addFile:hover{
+  cursor: pointer;
+}
+
+.addFile .add{
+  width: 20px;
+  font-size: 20px;
+  background-color: #0296d6;
+  height: 20px;
+  display: inline-block;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  position: relative;
+}
+
+.addFile .add span{
+  position: absolute;
+  top: -6px;
+  left: 3px;
+}
+
+.addFile span.text{
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: bold;
+  color: #5a5a5a;
+  position: relative;
+  top: -4px;
+  left: 4px;
+}
+
+/*4*/
+.submittedData{
+  overflow: auto;
+  height: 486px;
+  font-family: Roboto;
+  font-size: 14px;
+  color: #5a5a5a;
+
+}
+
+.submittedData div{
+  padding: 8px 5px;
+  border-bottom: 1px solid #b9b9b9;
+  justify-content: space-between;
+  display: flex;
+}
+
+

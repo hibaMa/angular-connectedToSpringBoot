@@ -1,0 +1,240 @@
+
+<!--elapses ... if text to long-->
+<!--if there is many parameter put them in separate class-->
+<!-- map find ...-->
+<!---->
+<div class="addRequest">
+<div class="forms-container">
+  <div class="formHeader">
+    <div class="formTitle">New Press Request</div>
+    <div class="close" (click)="closeAddRequest()">x</div>
+  </div>
+  <form-wizard >
+    <!--step1-->
+    <wizard-step [title]="'Basic info'"  >
+
+      <div class="first-form">
+        <div class="urgent">
+          <span class="urgent-text">Urgent submission during this week?</span>
+          <mat-slide-toggle name="urgent" [(ngModel)]="urgent"></mat-slide-toggle>
+        </div>
+
+        <div class="radioContainer">
+          <div class="type">Type</div>
+
+          <div class="TestRadioCont" (click)="toggleTest()">
+            <input type="checkbox" [checked]="isTestChecked">
+            <div class="TestRadio" [class.checked]="isTestChecked" >
+              <div class="checkedTestRadio" *ngIf="isTestChecked"></div>
+            </div>
+            <div class="title">Test</div>
+          </div>
+
+          <div class="LabRadioCont" (click)="toggleLab()">
+            <input type="checkbox" [checked]="isLabChecked">
+            <div class="LabRadio" [class.checked]="isLabChecked" >
+              <div class="checkedLabRadio" *ngIf="isLabChecked"></div>
+            </div>
+            <div class="title">Lab</div>
+          </div>
+        </div>
+
+        <form class="inputsForm">
+          <mat-form-field>
+            <input matInput name="testName"   type="text" placeholder="Test Name" required minlength="2" [(ngModel)]="Test_Name">
+            <!--<mat-hint class="errorTxt" >invalid feild </mat-hint>-->
+          </mat-form-field>
+          <div></div>
+
+          <mat-form-field>
+            <select matNativeControl [(ngModel)]="Project_NameID" name="Project_NameID" placeholder="Project Name" (change)="fillProductArray($event.target)">
+              <option style="display:none;"></option>
+            <option    *ngFor="let project of projectsArray" [value]="project.id">{{project.name}}</option>
+            </select>
+            <!--<mat-hint class="errorTxt">invalid feild </mat-hint>-->
+          </mat-form-field>
+
+          <mat-form-field>
+            <select matNativeControl [(ngModel)]="Product_NameID" name="Product_NameID" placeholder="Product Name">
+              <option style="display:none;"></option>
+              <option  *ngFor="let product of productsArray" [value]="product.id">{{product.name}}</option>
+            </select>
+            <!--<mat-hint class="errorTxt">invalid feild </mat-hint>-->
+          </mat-form-field>
+          <mat-form-field>
+            <input  matInput type="number" [disabled]="isHalfShift" name="shift" [(ngModel)]="shift"  min="0">
+            <!--<mat-hint class="errorTxt">invalid feild </mat-hint>-->
+          </mat-form-field>
+          <div class="halfShift" >
+            <span class="halfShiftText" >Half shift</span>
+            <mat-slide-toggle [(ngModel)]="isHalfShift" name="isHalfShift" (change)="HalfShiftChange()"></mat-slide-toggle>
+          </div>
+        </form>
+
+        <app-slider></app-slider>
+
+      </div>
+
+      <button class="cancel" (click)="closeAddRequest()">CANCEL</button>
+
+    </wizard-step>
+    <!--step2-->
+    <wizard-step [title]="'Request details'" >
+      <div class="RequestDetails">
+        <mat-form-field><input matInput type="text" placeholder="Test Objectives" name="Test_Objectives" [(ngModel)]="Test_Objectives"></mat-form-field>
+
+        <div class="requestMedia">
+          <span class="title">Request media</span>
+          <div class="add">
+            <span (click)="requestMediaPopupShow()">+ &nbsp;&nbsp; Add</span>
+            <div class="addedContent">
+              <div class="addedMedia" *ngFor="let addedMedia of requestMedia;let i = index">
+                <div class="info">{{addedMedia.media_name}} &nbsp; (Qty : {{addedMedia.media_Quantity}} {{addedMedia.media_type}})</div>
+                <div class="sittings">
+                  <i class="fa fa-pencil" aria-hidden="true" (click)="displayRequestEditPopup(i)"></i>
+                  <div class="popup editPopup" *ngIf="requestMediaEditPopup[i]==true">
+                    <mat-form-field>
+                      <select matNativeControl  (input)="editMedia_name=$event.target.value" name="media" [ngModel]="addedMedia.id" placeholder="media name" required (change)="modifySelectedMediaTypes($event.target)">
+                        <option [value]="media.id" *ngFor="let media of mediaArray" >{{media.name}}</option>
+                      </select>
+                    </mat-form-field>
+                    <div class="media_info">
+                      <mat-form-field>
+                        <input matInput  type="number" placeholder="Quantity"  name="editMedia_Quantity" [(ngModel)]="editMedia_Quantity" required min="0">
+                      </mat-form-field>
+                      <mat-form-field>
+                        <select matNativeControl  (input)="editMedia_type=$event.target.value"  name="mediaID" [ngModel]="addedMedia.mediaID" placeholder="media type" required >
+                          <option style="display:none;"></option>
+                          <option [value]="mediaType.id" *ngFor="let mediaType of selectedMediaTypes">{{mediaType.name}}</option>
+                        </select>
+                      </mat-form-field>
+                    </div>
+                    <div class="buttons">
+                      <button class="cancelBtn" (click)="requestMediaEditPopupHide(i)">CANCEL</button>
+                      <button class="done" (click)="editRequestMedia(i)" >Edit</button>
+
+                    </div>
+
+                  </div>
+                  <i class="fa fa-times" aria-hidden="true" (click)="deleteMediaByIndex(i)"></i>
+                </div>
+              </div>
+            </div>
+            <div class="popup">
+              <mat-form-field>
+                <select matNativeControl name="media_nameID" [(ngModel)]="media_nameID" placeholder="media name" required (change)="modifySelectedMediaTypes($event.target)">
+                  <option style="display:none;"></option>
+                  <option [value]="media.id" *ngFor="let media of mediaArray">{{media.name}}</option>
+                </select>
+              </mat-form-field>
+              <div class="media_info">
+                <mat-form-field>
+                  <input matInput  type="number" placeholder="Quantity" name="media_Quantity" [(ngModel)]="media_Quantity" required  min="0">
+                </mat-form-field>
+                <mat-form-field>
+                  <select matNativeControl name="media_typeID" [(ngModel)]="media_typeID" placeholder="media type" required >
+                    <option style="display:none;"></option>
+                    <option [value]="mediaType.id" *ngFor="let mediaType of selectedMediaTypes">{{mediaType.name}}</option>
+                  </select>
+                </mat-form-field>
+              </div>
+              <div class="buttons">
+                <button class="cancelBtn" (click)="requestMediaPopupHide()">CANCEL</button>
+                <button class="done" (click)="addRequestMedia()" >Done</button>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="ReplaceComponent">
+          <span class="title">Replace Component</span>
+          <div class="add">
+            <span (click)="replaceComponentPopupShow()">+ &nbsp;&nbsp; Add</span>
+            <div class="addedContent" >
+              <div class="addedComp" *ngFor="let addedComp of replaceComponent;let i = index">
+
+              <div class="info">{{addedComp.compo_name}} &nbsp; (Num : {{addedComp.compo_num}})</div>
+                <div class="sittings">
+                  <i class="fa fa-pencil" aria-hidden="true" (click)="displayCompEditPopup(i)"></i>
+                  <div class="popup editPopup" *ngIf="compEditPopupViability[i]==true">
+                    <mat-form-field>
+                      <select matNativeControl (input)="editComponent_name=$event.target.value" name="addedComp" [ngModel]="addedComp.id"   placeholder="Component name" required >
+                        <option [value]="component.id" *ngFor="let component of componentArray">{{component.name}}</option>
+                      </select>
+                    </mat-form-field>
+                    <div class="media_info">
+                      <mat-form-field>
+                        <input matInput  type="number" placeholder="Num" name="editComponent_Num" [(ngModel)]="editComponent_Num"  required min="0">
+                      </mat-form-field>
+                    </div>
+                    <div class="buttons">
+                      <button class="cancelBtn" (click)="replaceComponentEditPopupHide(i)">CANCEL</button>
+                      <button class="done" (click)="editComponent(i)" >Edit</button>
+                    </div>
+
+                  </div>
+                  <i class="fa fa-times" aria-hidden="true" (click)="deletecompByIndex(i)"></i>
+                </div>
+              </div>
+            </div>
+            <div class="popup">
+              <mat-form-field>
+                <select matNativeControl name="Component_name" [(ngModel)]="Component_name" placeholder="Component name" required>
+                  <option style="display:none;"></option>
+                  <option [value]="component.id" *ngFor="let component of componentArray">{{component.name}}</option>
+                </select>
+              </mat-form-field>
+              <div class="media_info">
+                <mat-form-field>
+                  <input matInput  type="number" placeholder="Num"  name="Component_Num" [(ngModel)]="Component_Num" required min="0">
+                </mat-form-field>
+              </div>
+              <div class="buttons">
+                <button class="cancelBtn" (click)="replaceComponentPopupHide()">CANCEL</button>
+                <button class="done" (click)="addReplaceComponentMedia()" >Done</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+        <mat-form-field><input matInput type="text" placeholder="Additional Comment" name="Additional_Comment"  [(ngModel)]="Additional_Comment"></mat-form-field>
+      </div>
+      <app-slider ></app-slider>
+
+
+    </wizard-step>
+    <!--step3-->
+    <wizard-step [title]="'Test plan'" >
+      <div class="optionalText">Locate and upload your test plan document (optional)</div>
+      <div id="fileBtns">
+        <app-upload-file *ngFor="let file of filesToUpload,let i = index" ></app-upload-file>
+      </div>
+      <div class="addFile" (click)="addFileBtn()"><div class="add" ><span>+</span></div><span class="text">Add File</span></div>
+      <!--<div (click)="submitRequest()">Done</div>-->
+      <app-slider></app-slider>
+    </wizard-step>
+    <!--step4-->
+    <wizard-step [title]="'Submit'" (onComplete)="submitRequest()">
+          <div class="submittedData">
+          <div><span>urgent </span><span>{{urgent}}</span></div>
+          <div><span>Product_Name </span><span *ngIf="Product_NameID">{{getProductByID(Product_NameID).name}}</span></div>
+          <div><span>Project_Name</span><span *ngIf="Project_NameID"> {{getProjectByID(Project_NameID).name}}</span></div>
+          <div><span>Test_Name </span><span>{{Test_Name}}</span></div>
+          <div><span>Test_type </span><span>{{isLabChecked?"Lab":"Test"}}</span></div>
+          <div><span>shift</span> <span>{{shift}}</span></div>
+          <div><span>Test_Objectives </span><span>{{Test_Objectives}}</span></div>
+          <div *ngIf="Additional_Comment !=''"><span>Additional_Comment</span><span> {{Additional_Comment}}</span></div>
+          <div><span>request Media Num </span><span>{{requestMedia.length}}</span></div>
+          <div><span>replace Component Num </span><span>{{replaceComponent.length}}</span></div>
+        </div>
+    </wizard-step>
+  </form-wizard>
+</div>
+</div>
+
+
